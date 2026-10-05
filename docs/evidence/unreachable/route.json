@@ -1,0 +1,22 @@
+{
+  "state": "failed",
+  "goals": [
+    {
+      "index": 0,
+      "target": [
+        -2.757687047605373e-07,
+        1.623443137255265e-06
+      ],
+      "state": "failed",
+      "action_status": 6,
+      "map_error_m": 5.209778741476113
+    }
+  ],
+  "success": false,
+  "gps_anchor": [
+    55.74997305483187,
+    37.60993630064087
+  ],
+  "reason": "Nav2 не достиг цели",
+  "wall_seconds": 22.303
+}

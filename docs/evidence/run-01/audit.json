@@ -1,0 +1,99 @@
+{
+  "messages": {
+    "/contacts/right": 134990,
+    "/contacts/body": 135009,
+    "/contacts/left": 134991,
+    "/clock": 135019,
+    "/gps/fix": 1356,
+    "/joint_states": 135014,
+    "/depth/points": 1356,
+    "/scan": 2711,
+    "/odom": 7971,
+    "/ground_truth": 5420,
+    "/global_costmap/costmap": 455
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/depth/points": "camera_link",
+    "/scan": "lidar_link",
+    "/odom": "odom"
+  },
+  "map_transforms": {
+    "base_link": [
+      3.9316265857216406,
+      2.867248982053538,
+      0.19999999999999998
+    ],
+    "lidar_link": [
+      3.9316265857216406,
+      2.867248982053538,
+      0.43000000000000016
+    ],
+    "camera_optical_frame": [
+      4.1588452010314905,
+      2.90290989702601,
+      0.32000000000000006
+    ],
+    "gps_link": [
+      3.9316265857216406,
+      2.867248982053538,
+      0.44000000000000006
+    ]
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 271.03,
+  "finite_depth_samples": 2266,
+  "depth_low_obstacle_marked_updates": 187,
+  "obstacle_contacts": [],
+  "geometry_overlap_samples": 0,
+  "minimum_sat_separation_m": 0.44147843012412213,
+  "ground_truth_finish_error_m": 0.15728330549716818,
+  "trajectory_samples": 1387,
+  "route": {
+    "state": "succeeded",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.757687047605373e-07,
+          -2.599998365206018
+        ],
+        "state": "succeeded",
+        "action_status": 4,
+        "map_error_m": 0.16416647603832615
+      },
+      {
+        "index": 1,
+        "target": [
+          4.000002481182987,
+          3.0000016101025935
+        ],
+        "state": "succeeded",
+        "action_status": 4,
+        "map_error_m": 0.14459732359017455
+      }
+    ],
+    "success": true,
+    "gps_anchor": [
+      55.74997305483187,
+      37.60993630064087
+    ],
+    "reason": "Все точки достигнуты",
+    "wall_seconds": 43.407
+  }
+}

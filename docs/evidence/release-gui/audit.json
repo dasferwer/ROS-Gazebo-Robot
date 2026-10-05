@@ -1,0 +1,117 @@
+{
+  "messages": {
+    "/cmd_vel_safe": 3223,
+    "/contacts/right": 15859,
+    "/contacts/body": 15859,
+    "/contacts/left": 15859,
+    "/clock": 15859,
+    "/gps/fix": 794,
+    "/joint_states": 15858,
+    "/depth/points": 793,
+    "/odom": 3965,
+    "/scan": 1586,
+    "/ground_truth": 3172,
+    "/global_costmap/costmap": 260
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/depth/points": "camera_link",
+    "/odom": "odom",
+    "/scan": "lidar_link"
+  },
+  "map_transforms": {
+    "base_link": [
+      3.9308255939374988,
+      2.8541179539829615,
+      0.19999999999999998
+    ],
+    "lidar_link": [
+      3.9308255939374988,
+      2.8541179539829615,
+      0.4300000000000001
+    ],
+    "camera_optical_frame": [
+      4.157477737018805,
+      2.8932179033007106,
+      0.32
+    ],
+    "gps_link": [
+      3.9308255939374988,
+      2.8541179539829615,
+      0.44
+    ]
+  },
+  "tf_stamps": {
+    "base_footprint": 158.6,
+    "left_wheel": 158.55,
+    "right_wheel": 158.55,
+    "odom": 159.0
+  },
+  "sensor_stamps": {
+    "/gps/fix": 158.6,
+    "/joint_states": 158.6,
+    "/depth/points": 158.4,
+    "/odom": 158.6,
+    "/scan": 158.5
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 158.6,
+  "finite_depth_samples": 2257,
+  "depth_low_obstacle_marked_updates": 36,
+  "obstacle_contacts": [],
+  "geometry_overlap_samples": 0,
+  "minimum_sat_separation_m": 0.4420040672237753,
+  "last_safe_command": [
+    0.0,
+    0.0
+  ],
+  "ground_truth_finish_error_m": 0.17188672820843193,
+  "trajectory_samples": 794,
+  "route": {
+    "state": "succeeded",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.7487633413869617e-07,
+          -2.599998365206018
+        ],
+        "state": "succeeded",
+        "action_status": 4,
+        "map_error_m": 0.13152901141641446
+      },
+      {
+        "index": 1,
+        "target": [
+          4.0000024820753595,
+          3.0000016101025935
+        ],
+        "state": "succeeded",
+        "action_status": 4,
+        "map_error_m": 0.15889330259774478
+      }
+    ],
+    "success": true,
+    "gps_anchor": [
+      55.74997305483187,
+      37.609936300640854
+    ],
+    "reason": "Все точки достигнуты",
+    "wall_seconds": 41.908
+  }
+}

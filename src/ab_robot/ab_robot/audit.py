@@ -11,7 +11,9 @@ from rclpy.node import Node
 from rclpy.clock import Clock as RosClock, ClockType
 from rclpy.qos import QoSProfile, DurabilityPolicy, qos_profile_sensor_data
 from sensor_msgs.msg import LaserScan, PointCloud2, NavSatFix, JointState
-from nav_msgs.msg import Odometry, OccupancyGrid
+from nav_msgs.msg import Odometry, OccupancyGrid, Path as NavPath
+from geometry_msgs.msg import PolygonStamped
+from geometry_msgs.msg import Twist
 from rosgraph_msgs.msg import Clock
 from ros_gz_interfaces.msg import Contacts
 from std_msgs.msg import String
@@ -46,10 +48,19 @@ class Audit(Node):
         self.counts=Counter()
         self.frames={}
         self.tf_sources={}
+        self.tf_stamps={}
+        self.sensor_stamps={}
         self.trajectory=[]
         self.truth=None
         self.contacts=[]
         self.route={}
+        self.last_command=None
+        self.controller_trace={}
+        self.navigation_trace=[]
+        self.create_subscription(NavPath,'/local_plan',self.local_plan,10)
+        self.create_subscription(PolygonStamped,'/local_costmap/published_footprint',self.footprint,10)
+        self.create_subscription(PolygonStamped,'/global_costmap/published_footprint',self.global_footprint,10)
+        self.create_subscription(Twist,'/cmd_vel_safe',self.command,10)
         self.min_gap=math.inf
         self.overlap_samples=0
         self.depth_low_marked=0
@@ -73,9 +84,32 @@ class Audit(Node):
         self.create_timer(.2,self.sample,clock=self.wall_clock)
         self.create_timer(2.0,self.save,clock=self.wall_clock)
 
+    def command(self,msg):
+        self.counts['/cmd_vel_safe']+=1
+        self.last_command=[msg.linear.x,msg.angular.z]
+
+    def local_plan(self,msg):
+        self.controller_trace['local_plan_stamp']=msg.header.stamp.sec+msg.header.stamp.nanosec*1e-9
+        self.controller_trace['local_plan_frame']=msg.header.frame_id
+        if msg.poses:
+            p=msg.poses[0].pose.position
+            self.controller_trace['local_plan_start']=[p.x,p.y]
+
+    def footprint(self,msg):
+        self.controller_trace['footprint_stamp']=msg.header.stamp.sec+msg.header.stamp.nanosec*1e-9
+        self.controller_trace['footprint_frame']=msg.header.frame_id
+        if msg.polygon.points:
+            self.controller_trace['footprint_center']=[sum(getattr(p,k) for p in msg.polygon.points)/len(msg.polygon.points) for k in ('x','y')]
+
+    def global_footprint(self,msg):
+        self.controller_trace['global_footprint_stamp']=msg.header.stamp.sec+msg.header.stamp.nanosec*1e-9
+        if msg.polygon.points:
+            self.controller_trace['global_footprint_center']=[sum(getattr(p,k) for p in msg.polygon.points)/len(msg.polygon.points) for k in ('x','y')]
+
     def sensor(self,topic,msg):
         self.counts[topic]+=1
         self.frames[topic]=msg.header.frame_id
+        self.sensor_stamps[topic]=msg.header.stamp.sec+msg.header.stamp.nanosec*1e-9
         if topic=='/depth/points':
             offsets={f.name:f.offset for f in msg.fields}
             if 'z' in offsets:
@@ -93,6 +127,7 @@ class Audit(Node):
     def tf(self,msg):
         for tf in msg.transforms:
             self.tf_sources.setdefault(tf.child_frame_id,set()).add(tf.header.frame_id)
+            self.tf_stamps[tf.child_frame_id]=tf.header.stamp.sec+tf.header.stamp.nanosec*1e-9
 
     def ground_truth(self,msg):
         self.counts['/ground_truth']+=1
@@ -133,6 +168,8 @@ class Audit(Node):
         self.min_gap=min(self.min_gap,gap)
         self.overlap_samples+=int(gap<=0)
         self.trajectory.append([self.last_clock,t.x,t.y,yaw,gap])
+        self.navigation_trace.append({'sim':self.last_clock,'truth':[t.x,t.y],
+                                     'tf_stamps':dict(self.tf_stamps),**self.controller_trace})
 
     def save(self):
         transforms={}
@@ -145,14 +182,16 @@ class Audit(Node):
         finish=self.scene['finish']
         error=None if self.truth is None else math.hypot(self.truth.translation.x-finish[0],self.truth.translation.y-finish[1])
         data={'messages':dict(self.counts),'frames':self.frames,'map_transforms':transforms,
+              'tf_stamps':self.tf_stamps,'sensor_stamps':self.sensor_stamps,
               'tf_parents':{k:sorted(v) for k,v in self.tf_sources.items()},
               'clock_regressions':self.clock_regressions,'sim_seconds':self.last_clock,
               'finite_depth_samples':self.finite_depth,'depth_low_obstacle_marked_updates':self.depth_low_marked,
               'obstacle_contacts':self.contacts,'geometry_overlap_samples':self.overlap_samples,
               'minimum_sat_separation_m':None if math.isinf(self.min_gap) else self.min_gap,
-              'ground_truth_finish_error_m':error,'trajectory_samples':len(self.trajectory),'route':self.route}
+              'last_safe_command':self.last_command,'ground_truth_finish_error_m':error,'trajectory_samples':len(self.trajectory),'route':self.route}
         (self.out/'audit.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
         (self.out/'trajectory.json').write_text(json.dumps(self.trajectory)+'\n')
+        (self.out/'navigation_trace.json').write_text(json.dumps(self.navigation_trace)+'\n')
 
 
 def main(args=None):

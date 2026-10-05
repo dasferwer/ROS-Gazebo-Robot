@@ -1,0 +1,48 @@
+Лидар и depth имеют потребителей: ['sensor_watchdog', 'gps_waypoints', 'global_costmap', 'rviz', 'simulation_audit', 'local_costmap']
+Издатели каждого ребра TF: {'base_footprint -> base_link': 1, 'base_link -> camera_link': 1, 'base_link -> front_caster': 1, 'base_link -> gps_link': 1, 'base_link -> left_wheel': 1, 'base_link -> lidar_link': 1, 'base_link -> rear_caster': 1, 'base_link -> right_wheel': 1, 'camera_link -> camera_optical_frame': 1, 'map -> odom': 1, 'odom -> base_footprint': 1}
+{"route_succeeded": true, "gps_lidar_depth_received": true, "clock_monotonic": true, "tf_connected": true, "depth_obstacle_consumed": true, "contact_sensors_received": true, "no_obstacle_contacts": true, "no_geometry_overlap": true, "ground_truth_goal_error": true, "lidar_costmap_consumers": true, "depth_costmap_consumers": true, "one_tf_publisher_per_edge": true}
+
+Files:             rosbag_0.db3
+Bag size:          237.4 MiB
+Storage id:        sqlite3
+Duration:          82.990000000s
+Start:             Jan  1 1970 00:01:03.170000000 (63.170000000)
+End:               Jan  1 1970 00:02:26.160000000 (146.160000000)
+Messages:          46652
+Topic information: Topic: /depth/points | Type: sensor_msgs/msg/PointCloud2 | Count: 414 | Serialization Format: cdr
+                   Topic: /ground_truth | Type: tf2_msgs/msg/TFMessage | Count: 1659 | Serialization Format: cdr
+                   Topic: /depth | Type: sensor_msgs/msg/Image | Count: 415 | Serialization Format: cdr
+                   Topic: /tf | Type: tf2_msgs/msg/TFMessage | Count: 4564 | Serialization Format: cdr
+                   Topic: /route_status | Type: std_msgs/msg/String | Count: 6 | Serialization Format: cdr
+                   Topic: /contacts/left | Type: ros_gz_interfaces/msg/Contacts | Count: 8297 | Serialization Format: cdr
+                   Topic: /local_costmap/published_footprint | Type: geometry_msgs/msg/PolygonStamped | Count: 415 | Serialization Format: cdr
+                   Topic: /contacts/body | Type: ros_gz_interfaces/msg/Contacts | Count: 8300 | Serialization Format: cdr
+                   Topic: /cmd_vel_safe | Type: geometry_msgs/msg/Twist | Count: 1663 | Serialization Format: cdr
+                   Topic: /odom | Type: nav_msgs/msg/Odometry | Count: 2075 | Serialization Format: cdr
+                   Topic: /tf_static | Type: tf2_msgs/msg/TFMessage | Count: 1 | Serialization Format: cdr
+                   Topic: /safety_fault | Type: std_msgs/msg/String | Count: 0 | Serialization Format: cdr
+                   Topic: /global_costmap/costmap | Type: nav_msgs/msg/OccupancyGrid | Count: 139 | Serialization Format: cdr
+                   Topic: /scan | Type: sensor_msgs/msg/LaserScan | Count: 830 | Serialization Format: cdr
+                   Topic: /plan | Type: nav_msgs/msg/Path | Count: 40 | Serialization Format: cdr
+                   Topic: /contacts/right | Type: ros_gz_interfaces/msg/Contacts | Count: 8298 | Serialization Format: cdr
+                   Topic: /clock | Type: rosgraph_msgs/msg/Clock | Count: 8297 | Serialization Format: cdr
+                   Topic: /gps/fix | Type: sensor_msgs/msg/NavSatFix | Count: 415 | Serialization Format: cdr
+                   Topic: /global_costmap/published_footprint | Type: geometry_msgs/msg/PolygonStamped | Count: 415 | Serialization Format: cdr
+                   Topic: /local_plan | Type: nav_msgs/msg/Path | Count: 409 | Serialization Format: cdr
+
+{
+    "programs": [
+
+    ],
+    "streams": [
+        {
+            "codec_name": "h264",
+            "width": 1600,
+            "height": 900,
+            "r_frame_rate": "15/1"
+        }
+    ],
+    "format": {
+        "duration": "83.334000"
+    }
+}

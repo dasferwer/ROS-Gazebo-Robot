@@ -1,0 +1,371 @@
+{
+  "endpoints": {
+    "/scan": {
+      "publishers": [
+        {
+          "node": "lidar_bridge",
+          "gid": "011015414daaff53955f0f63000016030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "amcl",
+          "gid": "01105587458c612c189eeff4000026040000000000000000"
+        },
+        {
+          "node": "global_costmap",
+          "gid": "011077b8f46ea20eb1d13ecd000063040000000000000000"
+        },
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f000023040000000000000000"
+        },
+        {
+          "node": "local_costmap",
+          "gid": "0110a020fec2b93a3819cada000062040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc251300001b040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d10800001b040000000000000000"
+        }
+      ]
+    },
+    "/depth/points": {
+      "publishers": [
+        {
+          "node": "depth_bridge",
+          "gid": "0110f4b1fa13ff97abebf26b000016030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "global_costmap",
+          "gid": "011077b8f46ea20eb1d13ecd000064040000000000000000"
+        },
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f000024040000000000000000"
+        },
+        {
+          "node": "local_costmap",
+          "gid": "0110a020fec2b93a3819cada000063040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc251300001c040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d10800001c040000000000000000"
+        }
+      ]
+    },
+    "/gps/fix": {
+      "publishers": [
+        {
+          "node": "gps_bridge",
+          "gid": "011072512bc5fce55e7fcbd3000016030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f000022040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc251300001d040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d10800001d040000000000000000"
+        }
+      ]
+    },
+    "/clock": {
+      "publishers": [
+        {
+          "node": "simulation_bridge",
+          "gid": "0110e099910e28f9f3c34c62000016030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "lidar_bridge",
+          "gid": "011015414daaff53955f0f63000014040000000000000000"
+        },
+        {
+          "node": "depth_image_bridge",
+          "gid": "011015483b00256eb2b053fd000014040000000000000000"
+        },
+        {
+          "node": "smoother_server",
+          "gid": "01101959ed5aae2587104b17000014040000000000000000"
+        },
+        {
+          "node": "amcl",
+          "gid": "01105587458c612c189eeff4000014040000000000000000"
+        },
+        {
+          "node": "gps_bridge",
+          "gid": "011072512bc5fce55e7fcbd3000014040000000000000000"
+        },
+        {
+          "node": "planner_server",
+          "gid": "011077b8f46ea20eb1d13ecd000014040000000000000000"
+        },
+        {
+          "node": "global_costmap",
+          "gid": "011077b8f46ea20eb1d13ecd00002f040000000000000000"
+        },
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f000008040000000000000000"
+        },
+        {
+          "node": "behavior_server",
+          "gid": "01108ea49e8a10f95418dfeb000014040000000000000000"
+        },
+        {
+          "node": "controller_server",
+          "gid": "0110a020fec2b93a3819cada000014040000000000000000"
+        },
+        {
+          "node": "local_costmap",
+          "gid": "0110a020fec2b93a3819cada00002f040000000000000000"
+        },
+        {
+          "node": "velocity_smoother",
+          "gid": "0110b016cff67a9486f96650000014040000000000000000"
+        },
+        {
+          "node": "lifecycle_manager_localization",
+          "gid": "0110bde8a74bd8fcb350c203000014040000000000000000"
+        },
+        {
+          "node": "robot_state_publisher",
+          "gid": "0110be4ae55261cc8c07c740000014040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc2513000008040000000000000000"
+        },
+        {
+          "node": "bt_navigator",
+          "gid": "0110cc1ac75abd60b1cad2bc000014040000000000000000"
+        },
+        {
+          "node": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "gid": "0110cc1ac75abd60b1cad2bc000032040000000000000000"
+        },
+        {
+          "node": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "gid": "0110cc1ac75abd60b1cad2bc000053040000000000000000"
+        },
+        {
+          "node": "lifecycle_manager_navigation",
+          "gid": "0110cd338c16e9a80a593a09000014040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d108000008040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d108000020040000000000000000"
+        },
+        {
+          "node": "simulation_bridge",
+          "gid": "0110e099910e28f9f3c34c62000014040000000000000000"
+        },
+        {
+          "node": "waypoint_follower",
+          "gid": "0110edb1fa16bb8cdff785d9000014040000000000000000"
+        },
+        {
+          "node": "depth_bridge",
+          "gid": "0110f4b1fa13ff97abebf26b000014040000000000000000"
+        },
+        {
+          "node": "map_server",
+          "gid": "0110fe649442510d1e5f94cd000014040000000000000000"
+        }
+      ]
+    },
+    "/tf": {
+      "publishers": [
+        {
+          "node": "amcl",
+          "gid": "01105587458c612c189eeff4000025030000000000000000"
+        },
+        {
+          "node": "robot_state_publisher",
+          "gid": "0110be4ae55261cc8c07c740000016030000000000000000"
+        },
+        {
+          "node": "simulation_bridge",
+          "gid": "0110e099910e28f9f3c34c62000019030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "transform_listener_impl_ffff7c0076d0",
+          "gid": "01101959ed5aae2587104b17000023040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff64007380",
+          "gid": "01105587458c612c189eeff4000023040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_aaab0cb50b70",
+          "gid": "011077b8f46ea20eb1d13ecd00003e040000000000000000"
+        },
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f00001f040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff8c004d20",
+          "gid": "01108ea49e8a10f95418dfeb000023040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff6c0258d0",
+          "gid": "0110a020fec2b93a3819cada00003e040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc2513000015040000000000000000"
+        },
+        {
+          "node": "bt_navigator",
+          "gid": "0110cc1ac75abd60b1cad2bc000021040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d108000019040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d108000022040000000000000000"
+        }
+      ]
+    },
+    "/tf_static": {
+      "publishers": [
+        {
+          "node": "robot_state_publisher",
+          "gid": "0110be4ae55261cc8c07c740000017030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "transform_listener_impl_ffff7c0076d0",
+          "gid": "01101959ed5aae2587104b17000024040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff64007380",
+          "gid": "01105587458c612c189eeff4000024040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_aaab0cb50b70",
+          "gid": "011077b8f46ea20eb1d13ecd00003f040000000000000000"
+        },
+        {
+          "node": "gps_waypoints",
+          "gid": "0110871e82de9b69a5c2614f000020040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff8c004d20",
+          "gid": "01108ea49e8a10f95418dfeb000024040000000000000000"
+        },
+        {
+          "node": "transform_listener_impl_ffff6c0258d0",
+          "gid": "0110a020fec2b93a3819cada00003f040000000000000000"
+        },
+        {
+          "node": "sensor_watchdog",
+          "gid": "0110caa7dd4cac6d2ecc2513000016040000000000000000"
+        },
+        {
+          "node": "bt_navigator",
+          "gid": "0110cc1ac75abd60b1cad2bc000022040000000000000000"
+        },
+        {
+          "node": "simulation_audit",
+          "gid": "0110d2b15b7f58bfcd34d10800001a040000000000000000"
+        }
+      ]
+    }
+  },
+  "tf_edge_publisher_gids": {
+    "base_footprint -> base_link": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> camera_link": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> front_caster": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> gps_link": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> left_wheel": [
+      "8625faf0b53f9bd200000000000000000000000000000000"
+    ],
+    "base_link -> lidar_link": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> rear_caster": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "base_link -> right_wheel": [
+      "8625faf0b53f9bd200000000000000000000000000000000"
+    ],
+    "camera_link -> camera_optical_frame": [
+      "154a9c1cdcbaf07c00000000000000000000000000000000"
+    ],
+    "map -> odom": [
+      "25ab25a69e8ddacd00000000000000000000000000000000"
+    ],
+    "odom -> base_footprint": [
+      "f2be459956c2bf5d00000000000000000000000000000000"
+    ]
+  },
+  "nodes": [
+    "//lidar_bridge",
+    "//depth_image_bridge",
+    "//smoother_server",
+    "//transform_listener_impl_ffff7c0076d0",
+    "//amcl",
+    "//transform_listener_impl_ffff64007380",
+    "//gps_bridge",
+    "//planner_server",
+    "/global_costmap/global_costmap",
+    "//transform_listener_impl_aaab0cb50b70",
+    "//gps_waypoints",
+    "//behavior_server",
+    "//transform_listener_impl_ffff8c004d20",
+    "//graph_evidence",
+    "//controller_server",
+    "/local_costmap/local_costmap",
+    "//transform_listener_impl_ffff6c0258d0",
+    "//velocity_smoother",
+    "//lifecycle_manager_localization",
+    "//robot_state_publisher",
+    "//sensor_watchdog",
+    "//bt_navigator",
+    "//bt_navigator_navigate_to_pose_rclcpp_node",
+    "//bt_navigator_navigate_through_poses_rclcpp_node",
+    "//lifecycle_manager_navigation",
+    "//simulation_audit",
+    "//simulation_bridge",
+    "//waypoint_follower",
+    "//depth_bridge",
+    "//map_server"
+  ]
+}

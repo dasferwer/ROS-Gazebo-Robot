@@ -1,0 +1,105 @@
+{
+  "messages": {
+    "/cmd_vel_safe": 2459,
+    "/contacts/body": 53515,
+    "/contacts/left": 53493,
+    "/contacts/right": 53501,
+    "/gps/fix": 544,
+    "/clock": 53563,
+    "/joint_states": 53556,
+    "/scan": 1088,
+    "/odom": 3198,
+    "/ground_truth": 2174,
+    "/depth/points": 334,
+    "/global_costmap/costmap": 188
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/scan": "lidar_link",
+    "/odom": "odom",
+    "/depth/points": "camera_link"
+  },
+  "map_transforms": {
+    "base_link": [
+      -4.000000000000001,
+      -3.0000000000000666,
+      0.2
+    ],
+    "lidar_link": [
+      -4.000000000000001,
+      -3.0000000000000666,
+      0.43000000000000005
+    ],
+    "camera_optical_frame": [
+      -3.7700000000000005,
+      -3.0000000000000666,
+      0.32
+    ],
+    "gps_link": [
+      -4.000000000000001,
+      -3.0000000000000666,
+      0.44
+    ]
+  },
+  "tf_stamps": {
+    "base_footprint": 108.732,
+    "left_wheel": 108.718,
+    "right_wheel": 108.718,
+    "odom": 109.2
+  },
+  "sensor_stamps": {
+    "/gps/fix": 108.6,
+    "/joint_states": 108.74,
+    "/scan": 108.7,
+    "/odom": 108.732,
+    "/depth/points": 108.6
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 108.742,
+  "finite_depth_samples": 1185,
+  "depth_low_obstacle_marked_updates": 0,
+  "obstacle_contacts": [],
+  "geometry_overlap_samples": 0,
+  "minimum_sat_separation_m": 1.6699999999963948,
+  "last_safe_command": [
+    0.0,
+    0.0
+  ],
+  "ground_truth_finish_error_m": 10.000000000002881,
+  "trajectory_samples": 603,
+  "route": {
+    "state": "failed",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.757687047605373e-07,
+          -2.599998365206018
+        ],
+        "state": "sent"
+      }
+    ],
+    "success": false,
+    "gps_anchor": [
+      55.74997305483187,
+      37.60993630064087
+    ],
+    "reason": "Поза local costmap устарела или расходится с TF; привод остановлен",
+    "wall_seconds": 3.739
+  }
+}

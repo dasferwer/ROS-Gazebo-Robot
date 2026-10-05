@@ -1,0 +1,893 @@
+{
+  "messages": {
+    "/cmd_vel_safe": 3394,
+    "/contacts/right": 77461,
+    "/contacts/body": 77476,
+    "/contacts/left": 77462,
+    "/clock": 77509,
+    "/gps/fix": 781,
+    "/joint_states": 77502,
+    "/depth/points": 781,
+    "/scan": 1562,
+    "/odom": 4592,
+    "/ground_truth": 3123,
+    "/global_costmap/costmap": 268
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/depth/points": "camera_link",
+    "/scan": "lidar_link",
+    "/odom": "odom"
+  },
+  "map_transforms": {
+    "base_link": [
+      0.7123454326443728,
+      -1.2624349461801083,
+      0.2
+    ],
+    "lidar_link": [
+      0.7123454326443728,
+      -1.2624349461801083,
+      0.43000000000000005
+    ],
+    "camera_optical_frame": [
+      0.6725480132521575,
+      -1.0359042299191112,
+      0.32
+    ],
+    "gps_link": [
+      0.7123454326443728,
+      -1.2624349461801083,
+      0.44
+    ]
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 156.15,
+  "finite_depth_samples": 0,
+  "depth_low_obstacle_marked_updates": 259,
+  "obstacle_contacts": [
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.82
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.824
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.826
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.828
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.83
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.83
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.832
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.834
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.838
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.84
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.842
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.842
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.844
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.846
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.848
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.852
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.852
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.856
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.856
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.858
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.86
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.862000000000002
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.864
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.866
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.868
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.87
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.872
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.876
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.876
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.88
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.88
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.882
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.884
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.886
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.888
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.89
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.892
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.896
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.896
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.898
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.9
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.904
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.906
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.906
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.908
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.91
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.912
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.914
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.916
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.918
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.922
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.922
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.924
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.926
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.928
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.93
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.932
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.934
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.936
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.938
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.94
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.942
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.944
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.946
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.948
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.952
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.954
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.954
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.958
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.958
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.962
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.962
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.964
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.966
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.968
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.97
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.972
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.974
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.976
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.978
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.98
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.982
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.986
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.986
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.988
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.99
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.992
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.994
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 19.996
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.0
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.0
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.002
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.004
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.006
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.008
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.01
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.012
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.014
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.016
+    },
+    {
+      "topic": "/contacts/body",
+      "collisions": [
+        "ab_robot::base_footprint::base_footprint_fixed_joint_lump__body_collision_collision",
+        "central::link::collision"
+      ],
+      "time": 20.018
+    }
+  ],
+  "geometry_overlap_samples": 733,
+  "minimum_sat_separation_m": -0.06458145401749726,
+  "last_safe_command": [
+    0.0,
+    0.0
+  ],
+  "ground_truth_finish_error_m": 5.3839963130047845,
+  "trajectory_samples": 837,
+  "route": {
+    "state": "failed",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.757687047605373e-07,
+          -2.599998365206018
+        ],
+        "state": "sent"
+      }
+    ],
+    "success": false,
+    "gps_anchor": [
+      55.74997305483187,
+      37.60993630064087
+    ],
+    "reason": "Контакт с препятствием; привод остановлен",
+    "wall_seconds": 23.708
+  }
+}

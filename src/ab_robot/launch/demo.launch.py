@@ -21,8 +21,8 @@ def generate_launch_description():
     sensors=[]
     for name, args, frame in [
         ('lidar_bridge',['/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'],'lidar_link'),
-        ('depth_bridge',['/depth/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
-                         '/depth@sensor_msgs/msg/Image[ignition.msgs.Image'],'camera_link'),
+        ('depth_bridge',['/depth/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'],'camera_link'),
+        ('depth_image_bridge',['/depth@sensor_msgs/msg/Image[ignition.msgs.Image'],'camera_optical_frame'),
         ('gps_bridge',['/gps/fix@sensor_msgs/msg/NavSatFix[ignition.msgs.NavSat'],'gps_link'),
     ]:
         sensors.append(Node(package='ros_gz_bridge',executable='parameter_bridge',name=name,

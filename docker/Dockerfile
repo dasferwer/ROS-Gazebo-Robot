@@ -8,6 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && dpkg-query -W > /opt/dependencies.lock && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y --no-install-recommends ros-humble-rmw-cyclonedds-cpp \
     && dpkg-query -W > /opt/dependencies.lock && rm -rf /var/lib/apt/lists/*
+COPY docker/dependencies-arm64.lock /opt/reference-dependencies.lock
+RUN test "$(dpkg --print-architecture)" = arm64 \
+    && dpkg-query -W > /tmp/current-dependencies.lock \
+    && diff -u /opt/reference-dependencies.lock /tmp/current-dependencies.lock
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ENV DISPLAY=:1 LIBGL_ALWAYS_SOFTWARE=1 QT_X11_NO_MITSHM=1 ROS_DOMAIN_ID=42
 WORKDIR /ws

@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 import sys
+from verification_rules import tf_evidence_valid
 
 path=Path(sys.argv[1])
 a=json.loads((path/'audit.json').read_text())
@@ -23,7 +24,7 @@ if (path/'graph.json').exists():
     for topic,label in [('/scan','lidar'),('/depth/points','depth')]:
         names={e['node'] for e in graph['endpoints'][topic]['subscribers']}
         checks[label+'_costmap_consumers']={'local_costmap','global_costmap'}<=names
-    checks['one_tf_publisher_per_edge']=all(len(gids)==1 for gids in graph['tf_edge_publisher_gids'].values())
+    checks['one_tf_publisher_per_edge']=tf_evidence_valid(graph)
 else:
     checks['graph_evidence_exists']=False
 (path/'checks.json').write_text(json.dumps(checks,indent=2)+'\n')

@@ -30,7 +30,7 @@ for name in ['local_costmap','global_costmap']:
     c.update(footprint=footprint,footprint_padding=.02,transform_tolerance=.5,
              update_frequency=5.0,publish_frequency=2.0,
              plugins=['static_layer','lidar_layer','depth_layer','inflation_layer'] if name=='global_costmap' else ['lidar_layer','depth_layer','inflation_layer'])
-    if name=='local_costmap': c.update(width=5,height=5)
+    if name=='local_costmap': c.update(width=5,height=5,global_frame='map')
     c['inflation_layer'].update(inflation_radius=.7,cost_scaling_factor=3.0)
     c['obstacle_layer']={
         'plugin':'nav2_costmap_2d::ObstacleLayer', 'enabled':True,
@@ -55,4 +55,5 @@ for name in ['local_costmap','global_costmap']:
 v=p['velocity_smoother']['ros__parameters']
 v.update(max_velocity=[.35,0.0,.8],min_velocity=[0.0,0.0,-.8],
          max_accel=[.7,0.0,1.5],max_decel=[-.7,0.0,-1.5],velocity_timeout=.5)
+p['behavior_server']['ros__parameters']['global_frame']='map'
 (root/'src/ab_robot/config/nav2.yaml').write_text(yaml.safe_dump(p,sort_keys=False))

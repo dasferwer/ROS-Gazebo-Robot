@@ -1,0 +1,94 @@
+{
+  "messages": {
+    "/cmd_vel_safe": 2356,
+    "/contacts/right": 57122,
+    "/contacts/body": 57124,
+    "/contacts/left": 57119,
+    "/clock": 57130,
+    "/gps/fix": 573,
+    "/joint_states": 57121,
+    "/depth/points": 573,
+    "/scan": 1145,
+    "/odom": 3365,
+    "/ground_truth": 2288,
+    "/global_costmap/costmap": 187
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/depth/points": "camera_link",
+    "/scan": "lidar_link",
+    "/odom": "odom"
+  },
+  "map_transforms": {
+    "base_link": [
+      -4.031204336690908,
+      -3.3078793215094024,
+      0.2
+    ],
+    "lidar_link": [
+      -4.031204336690908,
+      -3.3078793215094024,
+      0.43000000000000005
+    ],
+    "camera_optical_frame": [
+      -4.246063849140668,
+      -3.389948742793161,
+      0.32
+    ],
+    "gps_link": [
+      -4.031204336690908,
+      -3.3078793215094024,
+      0.4400000000000001
+    ]
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 114.416,
+  "finite_depth_samples": 2231,
+  "depth_low_obstacle_marked_updates": 0,
+  "obstacle_contacts": [],
+  "geometry_overlap_samples": 0,
+  "minimum_sat_separation_m": 1.2788988651979816,
+  "last_safe_command": [
+    0.0,
+    0.0
+  ],
+  "ground_truth_finish_error_m": 10.130801545555379,
+  "trajectory_samples": 577,
+  "route": {
+    "state": "failed",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.757687047605373e-07,
+          1.623443137255265e-06
+        ],
+        "state": "failed",
+        "action_status": 6,
+        "map_error_m": 5.209778741476113
+      }
+    ],
+    "success": false,
+    "gps_anchor": [
+      55.74997305483187,
+      37.60993630064087
+    ],
+    "reason": "Nav2 не достиг цели",
+    "wall_seconds": 22.303
+  }
+}

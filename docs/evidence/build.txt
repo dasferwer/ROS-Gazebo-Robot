@@ -1,0 +1,5 @@
+Starting >>> ab_robot
+Finished <<< ab_robot [0.69s]
+
+Summary: 1 package finished [0.89s]
+Ссылки контактных сенсоров соответствуют SDF

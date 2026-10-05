@@ -1,0 +1,32 @@
+{
+  "state": "succeeded",
+  "goals": [
+    {
+      "index": 0,
+      "target": [
+        -2.757687047605373e-07,
+        -2.599998365206018
+      ],
+      "state": "succeeded",
+      "action_status": 4,
+      "map_error_m": 0.16416647603832615
+    },
+    {
+      "index": 1,
+      "target": [
+        4.000002481182987,
+        3.0000016101025935
+      ],
+      "state": "succeeded",
+      "action_status": 4,
+      "map_error_m": 0.14459732359017455
+    }
+  ],
+  "success": true,
+  "gps_anchor": [
+    55.74997305483187,
+    37.60993630064087
+  ],
+  "reason": "Все точки достигнуты",
+  "wall_seconds": 43.407
+}

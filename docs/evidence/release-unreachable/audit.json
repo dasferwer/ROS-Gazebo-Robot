@@ -1,0 +1,107 @@
+{
+  "messages": {
+    "/cmd_vel_safe": 1440,
+    "/contacts/right": 6952,
+    "/contacts/body": 6952,
+    "/contacts/left": 6952,
+    "/clock": 6951,
+    "/gps/fix": 348,
+    "/joint_states": 6950,
+    "/depth/points": 348,
+    "/scan": 696,
+    "/odom": 1738,
+    "/ground_truth": 1390,
+    "/global_costmap/costmap": 112
+  },
+  "frames": {
+    "/gps/fix": "gps_link",
+    "/joint_states": "",
+    "/depth/points": "camera_link",
+    "/scan": "lidar_link",
+    "/odom": "odom"
+  },
+  "map_transforms": {
+    "base_link": [
+      -4.004313569934698,
+      -3.323982438976255,
+      0.2
+    ],
+    "lidar_link": [
+      -4.004313569934698,
+      -3.323982438976255,
+      0.43
+    ],
+    "camera_optical_frame": [
+      -4.2283097835984425,
+      -3.376190640097407,
+      0.32
+    ],
+    "gps_link": [
+      -4.004313569934698,
+      -3.323982438976255,
+      0.44
+    ]
+  },
+  "tf_stamps": {
+    "base_footprint": 69.52,
+    "left_wheel": 69.5,
+    "right_wheel": 69.5,
+    "odom": 70.0
+  },
+  "sensor_stamps": {
+    "/gps/fix": 69.4,
+    "/joint_states": 69.52,
+    "/depth/points": 69.4,
+    "/scan": 69.5,
+    "/odom": 69.52
+  },
+  "tf_parents": {
+    "base_footprint": [
+      "odom"
+    ],
+    "left_wheel": [
+      "base_link"
+    ],
+    "right_wheel": [
+      "base_link"
+    ],
+    "odom": [
+      "map"
+    ]
+  },
+  "clock_regressions": 0,
+  "sim_seconds": 69.52,
+  "finite_depth_samples": 2234,
+  "depth_low_obstacle_marked_updates": 0,
+  "obstacle_contacts": [],
+  "geometry_overlap_samples": 0,
+  "minimum_sat_separation_m": 1.2901755945317825,
+  "last_safe_command": [
+    0.0,
+    0.0
+  ],
+  "ground_truth_finish_error_m": 10.133035678370645,
+  "trajectory_samples": 348,
+  "route": {
+    "state": "failed",
+    "goals": [
+      {
+        "index": 0,
+        "target": [
+          -2.7487633413869617e-07,
+          1.623443137255265e-06
+        ],
+        "state": "failed",
+        "action_status": 6,
+        "map_error_m": 5.194316380044265
+      }
+    ],
+    "success": false,
+    "gps_anchor": [
+      55.74997305483187,
+      37.609936300640854
+    ],
+    "reason": "Nav2 не достиг цели",
+    "wall_seconds": 21.404
+  }
+}

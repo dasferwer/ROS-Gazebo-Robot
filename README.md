@@ -17,7 +17,9 @@ Ubuntu 22.04.5 LTS в контейнере, Python 3.10, ROS 2 Humble, Ignition 
 Fortress 6.18.0, Nav2 1.1.20, ros_gz 0.244.26. Используется Cyclone DDS.
 Официальная совместимость и интерфейсы: [источники](docs/sources.md).
 Базовый ROS-образ закреплён digest в Dockerfile. Фактические версии всех
-Debian-пакетов сохранены в `artifacts/dependencies-arm64.lock`.
+Debian-пакетов сохранены в `docker/dependencies-arm64.lock`. Сборка сравнивает с ним весь набор пакетов
+и завершается ошибкой при расхождении. Docker-конфигурация закреплена на
+Linux ARM64; на x86_64 Docker использует эмуляцию.
 
 Контейнер работает с программным OpenGL через Mesa/Xvfb. Gazebo и RViz
 доступны в браузере через noVNC. Нативный Linux x86_64 предусмотрен пакетами
@@ -96,7 +98,7 @@ Xacro содержит размеры, массу, тензоры инерции
 | planner_server, controller_server, bt_navigator | NavFn, DWB, исполнение NavigateToPose |
 | velocity_smoother | Ограничение ускорений и сглаживание скорости |
 | gps_waypoints | GPS-привязка, последовательные цели, результаты и тайм-ауты |
-| sensor_watchdog | Остановка при устаревших сенсорах, команде, контакте или завершении |
+| sensor_watchdog | Остановка при устаревших сенсорах, TF, команде, контакте или завершении |
 | simulation_audit | Проверка данных, TF, физической позиции и контактов |
 
 | Топик | Тип / потребитель |
@@ -147,11 +149,29 @@ ObstacleFootprint. Лидар использует ObstacleLayer, depth — от
 иначе луч лидара над низким объектом может стереть его 2D-отметку. Итоговые
 стоимости объединяются по максимуму и расширяются InflationLayer.
 
+Обе costmap и collision checker recovery behaviors используют `map`;
+локальная карта остаётся rolling window. Для этого статического стенда это
+согласует текущую позу, путь и collision checker в одной frame.
+Выбор сделан после диагностического GUI-прогона с устаревшим `map→odom` в
+буфере controller; это обход наблюдавшегося сбоя, а не доказанное устранение
+его причины в DDS. Подробности и повторные проверки — в [журнале](docs/ledger.md).
+
 Параметры находятся в `config/nav2.yaml`: скорость до 0.35 м/с, поворот
 до 0.8 рад/с, inflation radius 0.7 м, допуск Nav2 0.18 м и 0.2 рад.
 Итоговый критерий проверки по физической позиции — ошибка не более 0.25 м.
 Движение прекращается после завершения маршрута. Контакт защёлкивает остановку
 до нового запуска; контакты колёс/опор с полом разрешены.
+Watchdog закрывает привод при отсутствии или возрасте TF `map→base_link`
+более 0.5 с; отдельно контролируется продвижение stamp по steady clock.
+Параметр ROS `tf_timeout_s` задаёт этот предел. Исполнитель отменяет активную
+цель и сохраняет failure, если локализация потеряна.
+Для отмены при потере TF используется `tf_failure_timeout_s=2.0`: краткая
+задержка допускает восстановление, пока watchdog уже удерживает нулевую скорость.
+Кроме собственного TF-buffer, watchdog проверяет stamp и центр опубликованного
+footprint local costmap. Во время миссии разница поз более 0.25 м или возраст
+более 0.5 с сразу закрывает привод; устойчивый отказ 0.3 с защёлкивает остановку
+и завершает миссию через `/safety_fault`. Параметры:
+`controller_pose_timeout_s`, `controller_pose_tolerance_m`.
 
 ## GPS-waypoints
 
@@ -185,13 +205,15 @@ WGS84 в опорной широте, затем поворотом и пере�
 
 Каждая цель отправляется через Humble NavigateToPose. У Humble пустой result:
 успех проверяется по action status и расстоянию в map. Тайм-аут включает
-ожидание принятия цели; отказ, abort, cancel, устаревшие сенсоры и контакт
+ожидание принятия цели; отказ, abort, cancel, устаревшие сенсоры/TF и контакт
 завершают маршрут ошибкой. Тайм-ауты и watchdog используют steady clock,
 поэтому остановка симуляционного времени не создаёт бесконечного ожидания.
 
 ## Проверки и демонстрация
 
 Фактические результаты и матрица критериев: [проверки](docs/verification.md).
+Готовая демонстрация: `artifacts/final-video/demo.mp4`, rosbag —
+`artifacts/final-video/rosbag/`. Видео и bag передаются отдельно от Git.
 Команды тестирования внутри контейнера:
 
 ```bash
@@ -225,7 +247,7 @@ ros2 launch ab_robot demo.launch.py gui:=false \
 терминале того же контейнера:
 
 ```bash
-bash scripts/record.sh /ws/artifacts/demo
+bash scripts/record.sh /ws/artifacts/new-demo
 ```
 
 В третьем терминале:
@@ -233,7 +255,7 @@ bash scripts/record.sh /ws/artifacts/demo
 ```bash
 ros2 run ab_robot waypoints --ros-args -p use_sim_time:=true \
   -p route_file:=/ws/install/ab_robot/share/ab_robot/config/route.yaml \
-  -p report_file:=/ws/artifacts/demo/route.json
+  -p report_file:=/ws/artifacts/new-demo/route.json
 ```
 
 После завершения остановить запись Ctrl+C: MP4 и rosbag закрываются корректно.
@@ -241,23 +263,41 @@ ros2 run ab_robot waypoints --ros-args -p use_sim_time:=true \
 Для воспроизведения bag не запускать живую симуляцию:
 
 ```bash
-ros2 bag info artifacts/demo/rosbag
-ros2 bag play artifacts/demo/rosbag --clock
+ros2 bag info artifacts/final-video/rosbag
+ros2 bag play artifacts/final-video/rosbag --clock --topics \
+  /tf /tf_static /odom /scan /depth /depth/points /gps/fix \
+  /plan /ground_truth /global_costmap/costmap /route_status
 rviz2 -d src/ab_robot/config/demo.rviz --ros-args -p use_sim_time:=true
 ```
 
-Для полного RobotModel при replay отдельно запустить robot_state_publisher
-с тем же Xacro; TF статических сенсоров уже записан. Время воспроизведения
-задаёт `--clock`, записанный `/clock` следует исключить из проигрываемых
-топиков во избежание двух издателей; точная команда приведена в отчёте.
+Для RobotModel запустить publisher только описания модели; его TF перенаправлены
+в другие топики, потому что исходный TF уже проигрывается из bag:
+
+```bash
+ros2 run robot_state_publisher robot_state_publisher --ros-args \
+  -p use_sim_time:=true \
+  -p robot_description:="$(xacro src/ab_robot/urdf/robot.urdf.xacro)" \
+  -r /tf:=/replay_unused_tf -r /tf_static:=/replay_unused_tf_static
+```
+
+Время воспроизведения задаёт `--clock`; список `--topics` исключает записанный `/clock` и управляющие
+команды, поэтому время имеет одного издателя.
 
 ## Ограничения и сдача
 
 Программный OpenGL медленнее аппаратного; видео показывает скорость
 конкретного стенда. Используются идеальный GPS и известный начальный yaw.
 Полевой GPS, шум, рельеф, динамические препятствия и аппаратные датчики
-не проверялись. APT-репозитории меняются: полный manifest фиксирует фактическую
-сборку, а для побитового переноса нужен сохранённый Docker-образ (`docker save`).
+не проверялись. APT-репозитории меняются: сборка проверяет полный manifest и не принимает
+другие версии молча. Если lock-проверка не проходит, используйте сохранённый
+проверенный образ или отдельно обновите lock и повторите интеграционные проверки.
+Для переноса точного образа:
+
+```bash
+docker save ab-robot:humble | gzip > artifacts/ab-robot-humble-arm64.tar.gz
+# На другом компьютере:
+gunzip -c artifacts/ab-robot-humble-arm64.tar.gz | docker load
+```
 
 `artifacts/` не коммитится: видео и bag передаются отдельными файлами.
 Перед сдачей публикуют репозиторий по отдельной команде и прикладывают MP4.

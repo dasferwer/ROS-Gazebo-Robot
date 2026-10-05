@@ -1,0 +1,7 @@
+{
+  "mission_failed": true,
+  "drive_zero": true,
+  "no_contact": true,
+  "no_overlap": true,
+  "controller_stamp_stale": true
+}

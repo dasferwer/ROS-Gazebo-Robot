@@ -1,0 +1,4 @@
+{
+  "/depth": "camera_optical_frame",
+  "/depth/points": "camera_link"
+}

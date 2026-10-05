@@ -9,6 +9,7 @@ video_pid=$!
 ros2 bag record --use-sim-time -o "$out_dir/rosbag" \
     /clock /tf /tf_static /odom /scan /depth /depth/points /gps/fix \
     /cmd_vel_safe /route_status /plan /ground_truth /global_costmap/costmap \
+    /local_plan /local_costmap/published_footprint /global_costmap/published_footprint /safety_fault \
     /contacts/body /contacts/left /contacts/right > "$out_dir/bag.log" 2>&1 &
 bag_pid=$!
 finish() {

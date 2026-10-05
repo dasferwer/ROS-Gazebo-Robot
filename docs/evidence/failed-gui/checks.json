@@ -1,0 +1,14 @@
+{
+  "route_succeeded": false,
+  "gps_lidar_depth_received": true,
+  "clock_monotonic": true,
+  "tf_connected": true,
+  "depth_obstacle_consumed": true,
+  "contact_sensors_received": true,
+  "no_obstacle_contacts": false,
+  "no_geometry_overlap": false,
+  "ground_truth_goal_error": false,
+  "lidar_costmap_consumers": true,
+  "depth_costmap_consumers": true,
+  "one_tf_publisher_per_edge": true
+}

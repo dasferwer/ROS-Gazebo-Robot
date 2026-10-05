@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 source install/setup.bash

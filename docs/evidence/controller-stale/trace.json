@@ -1,0 +1,30 @@
+{
+  "sim": 108.644,
+  "truth": [
+    -4.0000000000036025,
+    -3.0
+  ],
+  "tf_stamps": {
+    "base_footprint": 108.63,
+    "left_wheel": 108.618,
+    "right_wheel": 108.618,
+    "odom": 109.1
+  },
+  "footprint_stamp": 3.91,
+  "footprint_frame": "map",
+  "footprint_center": [
+    -3.9850000143051147,
+    -3.0
+  ],
+  "global_footprint_stamp": 108.494,
+  "global_footprint_center": [
+    -3.9850000143051147,
+    -3.0
+  ],
+  "local_plan_stamp": 3.91,
+  "local_plan_frame": "map",
+  "local_plan_start": [
+    -4.000000000000001,
+    -3.0000000000000666
+  ]
+}

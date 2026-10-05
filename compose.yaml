@@ -2,6 +2,7 @@ name: ros-gazebo-ab
 services:
   robot:
     image: ab-robot:humble
+    platform: linux/arm64
     build:
       context: .
       dockerfile: docker/Dockerfile

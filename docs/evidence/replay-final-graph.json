@@ -1,0 +1,103 @@
+{
+  "endpoints": {
+    "/scan": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca00001e030000000000000000"
+        }
+      ],
+      "subscribers": []
+    },
+    "/depth/points": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca000016030000000000000000"
+        }
+      ],
+      "subscribers": []
+    },
+    "/gps/fix": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca000020030000000000000000"
+        }
+      ],
+      "subscribers": []
+    },
+    "/clock": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca000015030000000000000000"
+        }
+      ],
+      "subscribers": [
+        {
+          "node": "robot_state_publisher",
+          "gid": "01108c5b36b924986a805765000014040000000000000000"
+        }
+      ]
+    },
+    "/tf": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca000019030000000000000000"
+        }
+      ],
+      "subscribers": []
+    },
+    "/tf_static": {
+      "publishers": [
+        {
+          "node": "rosbag2_player",
+          "gid": "011028c11bc82933387393ca00001c030000000000000000"
+        }
+      ],
+      "subscribers": []
+    }
+  },
+  "tf_edge_publisher_gids": {
+    "base_footprint -> base_link": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> camera_link": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> front_caster": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> gps_link": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> left_wheel": [
+      "12b385bbbce6b74800000000000000000000000000000000"
+    ],
+    "base_link -> lidar_link": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> rear_caster": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "base_link -> right_wheel": [
+      "12b385bbbce6b74800000000000000000000000000000000"
+    ],
+    "camera_link -> camera_optical_frame": [
+      "0ad5b35ae6ad9a0300000000000000000000000000000000"
+    ],
+    "map -> odom": [
+      "12b385bbbce6b74800000000000000000000000000000000"
+    ],
+    "odom -> base_footprint": [
+      "12b385bbbce6b74800000000000000000000000000000000"
+    ]
+  },
+  "nodes": [
+    "//rosbag2_player",
+    "//robot_state_publisher",
+    "//graph_evidence"
+  ]
+}

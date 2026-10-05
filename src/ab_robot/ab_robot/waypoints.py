@@ -28,6 +28,11 @@ class Waypoints(Node):
         self.wall_clock = RosClock(clock_type=ClockType.STEADY_TIME)
         self.declare_parameter('route_file', '')
         self.declare_parameter('report_file', '/ws/artifacts/route.json')
+        self.declare_parameter('tf_timeout_s',.5)
+        self.declare_parameter('tf_failure_timeout_s',2.0)
+        self.tf_missing_since=None
+        self.last_tf_stamp=None
+        self.tf_progress=time.monotonic()
         self.cfg = yaml.safe_load(Path(self.get_parameter('route_file').value).read_text())
         self.points = validate_route(self.cfg['waypoints'])
         self.state = RouteState(len(self.points), self.cfg['goal_timeout_s'])
@@ -51,6 +56,8 @@ class Waypoints(Node):
         self.create_subscription(NavSatFix, '/gps/fix', self.gps, qos_profile_sensor_data)
         self.create_subscription(LaserScan, '/scan', lambda m: self.received('scan'), qos_profile_sensor_data)
         self.create_subscription(PointCloud2, '/depth/points', lambda m: self.received('depth'), qos_profile_sensor_data)
+        self.create_subscription(String,'/safety_fault',lambda m:self.finish(False,m.data),
+                                 QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL))
         for topic in ('/contacts/body','/contacts/left','/contacts/right'):
             self.create_subscription(Contacts,topic,self.contact,qos_profile_sensor_data)
         self.create_timer(.1, self.tick, clock=self.wall_clock)
@@ -72,15 +79,19 @@ class Waypoints(Node):
             self.fixes = self.fixes[-5:]
 
     def publish(self):
-        self.status_pub.publish(String(data=json.dumps(self.report, ensure_ascii=False)))
+        if rclpy.ok():
+            self.status_pub.publish(String(data=json.dumps(self.report, ensure_ascii=False)))
 
     def finish(self, success, reason):
         if self.done:
             return
-        if self.goal_handle is not None and not success:
+        if rclpy.ok() and self.goal_handle is not None and not success:
             self.goal_handle.cancel_goal_async()
-        if self.send_future is not None and not self.send_future.done():
-            self.send_future.add_done_callback(self.cancel_late_goal)
+        elif rclpy.ok() and self.send_future is not None and not success:
+            if self.send_future.done():
+                self.cancel_late_goal(self.send_future)
+            else:
+                self.send_future.add_done_callback(self.cancel_late_goal)
         self.done = True
         self.report.update(state='succeeded' if success else 'failed', success=success,
                            reason=reason, wall_seconds=round(time.monotonic()-self.started, 3))
@@ -91,6 +102,8 @@ class Waypoints(Node):
         self.get_logger().info(f'Маршрут завершён: {reason}')
 
     def cancel_late_goal(self,future):
+        if not rclpy.ok():
+            return
         try:
             handle=future.result()
             if handle.accepted:
@@ -99,7 +112,17 @@ class Waypoints(Node):
             self.get_logger().error(f'Ошибка отмены отложенной цели: {exc}')
 
     def pose(self):
-        return self.buffer.lookup_transform('map', 'base_link', rclpy.time.Time())
+        tf=self.buffer.lookup_transform('map', 'base_link', rclpy.time.Time())
+        stamp=rclpy.time.Time.from_msg(tf.header.stamp).nanoseconds
+        now=time.monotonic()
+        if stamp!=self.last_tf_stamp:
+            self.last_tf_stamp=stamp
+            self.tf_progress=now
+        timeout=self.get_parameter('tf_timeout_s').value
+        age=(self.get_clock().now().nanoseconds-stamp)*1e-9
+        if not (-.5<=age<timeout and now-self.tf_progress<timeout):
+            raise TransformException('Устарел TF локализации')
+        return tf
 
     def tick(self):
         if self.done:
@@ -145,6 +168,15 @@ class Waypoints(Node):
             self.report['gps_anchor'] = [latitude,longitude]
         if any(now-self.sensors.get(k,0) > self.cfg['sensor_timeout_s'] for k in ('scan','depth','gps')):
             self.finish(False,'Устарели обязательные данные сенсоров')
+            return
+        try:
+            self.pose()
+            self.tf_missing_since=None
+        except TransformException:
+            if self.tf_missing_since is None:
+                self.tf_missing_since=now
+            elif now-self.tf_missing_since>=self.get_parameter('tf_failure_timeout_s').value:
+                self.finish(False,'Потерян или устарел TF локализации; запрошена отмена')
             return
         if self.state.expired(now):
             self.state.result(False)
