@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ab_robot">
+  <xacro:arg name="config" default="$(find ab_robot)/config/robot.yaml"/>
+  <xacro:property name="cfg" value="${xacro.load_yaml('$(arg config)')}"/>
+  <xacro:property name="l" value="${cfg['body_length']}"/>
+  <xacro:property name="w" value="${cfg['body_width']}"/>
+  <xacro:property name="h" value="${cfg['body_height']}"/>
+  <xacro:property name="m" value="${cfg['body_mass']}"/>
+  <xacro:property name="r" value="${cfg['wheel_radius']}"/>
+  <material name="blue"><color rgba="0.08 0.35 0.8 1"/></material>
+  <material name="dark"><color rgba="0.08 0.08 0.1 1"/></material>
+  <link name="base_footprint"/>
+  <joint name="body_height_joint" type="fixed"><parent link="base_footprint"/><child link="base_link"/><origin xyz="0 0 0.20"/></joint>
+  <link name="base_link">
+    <inertial><mass value="${m}"/><inertia ixx="${m*(w*w+h*h)/12}" iyy="${m*(l*l+h*h)/12}" izz="${m*(l*l+w*w)/12}" ixy="0" ixz="0" iyz="0"/></inertial>
+    <visual><geometry><box size="${l} ${w} ${h}"/></geometry><material name="blue"/></visual>
+    <collision name="body_collision"><geometry><box size="${l} ${w} ${h}"/></geometry></collision>
+  </link>
+  <xacro:macro name="wheel" params="side sign">
+    <link name="${side}_wheel">
+      <inertial><mass value="0.3"/><inertia ixx="0.001" iyy="0.0015" izz="0.001" ixy="0" ixz="0" iyz="0"/></inertial>
+      <visual><origin rpy="${pi/2} 0 0"/><geometry><cylinder radius="${r}" length="${cfg['wheel_width']}"/></geometry><material name="dark"/></visual>
+      <collision name="${side}_wheel_collision"><origin rpy="${pi/2} 0 0"/><geometry><cylinder radius="${r}" length="${cfg['wheel_width']}"/></geometry></collision>
+    </link>
+    <joint name="${side}_wheel_joint" type="continuous"><parent link="base_link"/><child link="${side}_wheel"/><origin xyz="0 ${sign*cfg['wheel_separation']/2} -0.10"/><axis xyz="0 1 0"/><limit effort="10" velocity="8"/></joint>
+    <gazebo reference="${side}_wheel"><mu1>1.0</mu1><mu2>1.0</mu2></gazebo>
+  </xacro:macro>
+  <xacro:wheel side="left" sign="1"/><xacro:wheel side="right" sign="-1"/>
+  <xacro:macro name="caster" params="name x">
+    <link name="${name}">
+      <inertial><mass value="0.05"/><inertia ixx="0.000018" iyy="0.000018" izz="0.000018" ixy="0" ixz="0" iyz="0"/></inertial>
+      <visual><geometry><sphere radius="0.03"/></geometry><material name="dark"/></visual>
+      <collision><geometry><sphere radius="0.03"/></geometry></collision>
+    </link>
+    <joint name="${name}_joint" type="fixed"><parent link="base_link"/><child link="${name}"/><origin xyz="${x} 0 -0.17"/></joint>
+    <gazebo reference="${name}"><mu1>0.0</mu1><mu2>0.0</mu2><preserveFixedJoint>true</preserveFixedJoint></gazebo>
+  </xacro:macro>
+  <xacro:caster name="front_caster" x="0.16"/><xacro:caster name="rear_caster" x="-0.16"/>
+  <xacro:macro name="sensor_link" params="name xyz">
+    <link name="${name}"><inertial><mass value="0.05"/><inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/></inertial><visual><geometry><box size="0.04 0.04 0.04"/></geometry><material name="dark"/></visual></link>
+    <joint name="${name}_joint" type="fixed"><parent link="base_link"/><child link="${name}"/><origin xyz="${xyz}"/></joint>
+    <gazebo reference="${name}_joint"><preserveFixedJoint>true</preserveFixedJoint></gazebo>
+  </xacro:macro>
+  <xacro:sensor_link name="lidar_link" xyz="0 0 0.23"/>
+  <xacro:sensor_link name="camera_link" xyz="0.23 0 0.12"/>
+  <xacro:sensor_link name="gps_link" xyz="0 0 0.24"/>
+  <link name="camera_optical_frame"/>
+  <joint name="camera_optical_joint" type="fixed"><parent link="camera_link"/><child link="camera_optical_frame"/><origin rpy="${-pi/2} 0 ${-pi/2}"/></joint>
+  <gazebo reference="lidar_link">
+    <sensor name="lidar" type="gpu_lidar"><topic>/scan</topic><update_rate>${cfg['lidar_rate']}</update_rate><always_on>true</always_on>
+      <lidar><scan><horizontal><samples>${cfg['lidar_samples']}</samples><resolution>1</resolution><min_angle>${-pi}</min_angle><max_angle>${pi}</max_angle></horizontal></scan><range><min>0.12</min><max>${cfg['lidar_range']}</max><resolution>0.01</resolution></range></lidar>
+    </sensor>
+  </gazebo>
+  <gazebo reference="camera_link">
+    <sensor name="depth" type="depth_camera"><topic>/depth</topic><update_rate>${cfg['depth_rate']}</update_rate><always_on>true</always_on>
+      <camera><horizontal_fov>1.05</horizontal_fov><image><width>${cfg['depth_width']}</width><height>${cfg['depth_height']}</height><format>R_FLOAT32</format></image><clip><near>0.15</near><far>${cfg['depth_range']}</far></clip></camera>
+    </sensor>
+  </gazebo>
+  <gazebo reference="gps_link"><sensor name="gps" type="navsat"><topic>/gps/fix</topic><update_rate>${cfg['gps_rate']}</update_rate><always_on>true</always_on></sensor></gazebo>
+  <gazebo reference="base_link"><sensor name="body_contact" type="contact"><topic>/contacts/body</topic><always_on>true</always_on><update_rate>50</update_rate><contact><collision>base_footprint_fixed_joint_lump__body_collision_collision</collision><collision>base_footprint_fixed_joint_lump__front_caster_collision_1</collision><collision>base_footprint_fixed_joint_lump__rear_caster_collision_2</collision></contact></sensor></gazebo>
+  <gazebo reference="left_wheel"><sensor name="left_contact" type="contact"><topic>/contacts/left</topic><update_rate>50</update_rate><contact><collision>left_wheel_collision_collision</collision></contact></sensor></gazebo>
+  <gazebo reference="right_wheel"><sensor name="right_contact" type="contact"><topic>/contacts/right</topic><update_rate>50</update_rate><contact><collision>right_wheel_collision_collision</collision></contact></sensor></gazebo>
+  <gazebo>
+    <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint><right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>${cfg['wheel_separation']}</wheel_separation><wheel_radius>${r}</wheel_radius>
+      <topic>/cmd_vel</topic><odom_topic>/odom</odom_topic><tf_topic>/tf</tf_topic>
+      <frame_id>odom</frame_id><child_frame_id>base_footprint</child_frame_id><odom_publish_frequency>30</odom_publish_frequency>
+    </plugin>
+    <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"><topic>/joint_states</topic><joint_name>left_wheel_joint</joint_name><joint_name>right_wheel_joint</joint_name></plugin>
+    <plugin filename="ignition-gazebo-pose-publisher-system" name="ignition::gazebo::systems::PosePublisher"><publish_link_pose>false</publish_link_pose><publish_sensor_pose>false</publish_sensor_pose><publish_nested_model_pose>true</publish_nested_model_pose><use_pose_vector_msg>true</use_pose_vector_msg><update_frequency>20</update_frequency></plugin>
+  </gazebo>
+</robot>

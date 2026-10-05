@@ -1,0 +1,15 @@
+body_length: 0.42
+body_width: 0.32
+body_height: 0.18
+body_mass: 5.0
+wheel_radius: 0.10
+wheel_width: 0.04
+wheel_separation: 0.38
+lidar_rate: 10
+lidar_samples: 360
+lidar_range: 8.0
+depth_rate: 5
+depth_width: 160
+depth_height: 120
+depth_range: 5.0
+gps_rate: 5

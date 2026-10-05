@@ -1,0 +1,23 @@
+datum:
+  latitude: 55.75
+  longitude: 37.61
+  map_x: 0.0
+  map_y: 0.0
+  enu_to_map_yaw: 0.0
+anchor:
+  map_x: -4.0
+  map_y: -3.0
+  expected_latitude: 55.74997305484657
+  expected_longitude: 37.60993630059257
+  tolerance_m: 0.5
+startup_timeout_s: 90.0
+goal_timeout_s: 120.0
+sensor_timeout_s: 5.0
+xy_tolerance_m: 0.25
+waypoints:
+- latitude: 55.74997664753369
+  longitude: 37.61
+  yaw: 0
+- latitude: 55.75002694515343
+  longitude: 37.610063699407426
+  yaw: 0

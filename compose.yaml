@@ -1,0 +1,15 @@
+name: ros-gazebo-ab
+services:
+  robot:
+    image: ab-robot:humble
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "127.0.0.1:6080:6080"
+    volumes:
+      - .:/ws
+    shm_size: 1gb
+    environment:
+      ROS_DOMAIN_ID: "42"
+    command: ["bash", "scripts/launch.sh"]

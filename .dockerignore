@@ -1,0 +1,7 @@
+build
+install
+log
+.git
+artifacts
+__pycache__
+.pytest_cache
