@@ -7,8 +7,8 @@
 лидара: его обнаруживает depth-камера.
 
 Проект создан для тестового задания ROS/Gazebo. Реальное оборудование,
-его драйверы и полевые испытания в проект не входят. Репозиторий подготовлен
-локально; публикация выполняется отдельно.
+его драйверы и полевые испытания в проект не входят.
+[Репозиторий на GitHub](https://github.com/dasferwer/ROS-Gazebo-Robot).
 
 ## Стек
 
@@ -213,7 +213,10 @@ WGS84 в опорной широте, затем поворотом и пере�
 
 Фактические результаты и матрица критериев: [проверки](docs/verification.md).
 Готовая демонстрация: `artifacts/final-video/demo.mp4`, rosbag —
-`artifacts/final-video/rosbag/`. Видео и bag передаются отдельно от Git.
+`artifacts/final-video/rosbag/`.
+[Скачать видео](https://github.com/dasferwer/ROS-Gazebo-Robot/releases/download/v0.1.0/demo.mp4)
+можно из [релиза](https://github.com/dasferwer/ROS-Gazebo-Robot/releases/tag/v0.1.0).
+Rosbag сохранён локально и передаётся отдельно.
 Команды тестирования внутри контейнера:
 
 ```bash
@@ -299,8 +302,8 @@ docker save ab-robot:humble | gzip > artifacts/ab-robot-humble-arm64.tar.gz
 gunzip -c artifacts/ab-robot-humble-arm64.tar.gz | docker load
 ```
 
-`artifacts/` не коммитится: видео и bag передаются отдельными файлами.
-Перед сдачей публикуют репозиторий по отдельной команде и прикладывают MP4.
+`artifacts/` не коммитится. Видео приложено к релизу на GitHub,
+а rosbag сохранён в локальной папке проекта.
 Оценку работодателя проект не предсказывает.
 
 Бонусные вопросы: [подключение, питание и проверки без ROS](docs/electronics.md).

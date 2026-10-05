@@ -5,3 +5,4 @@ __pycache__/
 .pytest_cache/
 artifacts/*
 !artifacts/.gitkeep
+.DS_Store
